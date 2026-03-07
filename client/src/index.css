@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-body bg-dark-bg text-gray-100;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl;
+  }
+  
+  .btn-primary {
+    @apply px-6 py-3 bg-gradient-primary text-white font-semibold rounded-lg
+           hover:shadow-lg hover:scale-105 transition-all duration-300
+           focus:outline-none focus:ring-2 focus:ring-primary;
+  }
+  
+  .btn-secondary {
+    @apply px-6 py-3 bg-white/10 backdrop-blur-lg border border-white/20 text-white
+           font-semibold rounded-lg hover:bg-white/20 hover:scale-105
+           transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent;
+  }
+  
+  .input-field {
+    @apply w-full px-4 py-3 bg-white/5 backdrop-blur-lg border border-white/20
+           rounded-lg text-white placeholder-gray-400 focus:outline-none
+           focus:ring-2 focus:ring-primary focus:border-transparent
+           transition-all duration-300;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent;
+  }
+  
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1E293B;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #00D2FF 0%, #3A7BD5 100%);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00D2FF;
+}
+
+/* Rain Animation */
+.rain {
+  position: absolute;
+  width: 2px;
+  height: 50px;
+  background: linear-gradient(transparent, #00D2FF);
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-100vh);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0.3;
+  }
+}
+
+/* Loading Animation */
+.loader {
+  border: 3px solid rgba(0, 210, 255, 0.1);
+  border-top: 3px solid #00D2FF;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Particle Background */
+.particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Glassmorphism Effect */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 210, 255, 0.1);
+}

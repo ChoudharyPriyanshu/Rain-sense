@@ -1,0 +1,27 @@
+{
+  "name": "rainsense",
+  "version": "1.0.0",
+  "description": "AI-Powered Rainfall Prediction Platform with MERN Stack",
+  "main": "server/index.js",
+  "scripts": {
+    "server": "cd server && npm run dev",
+    "client": "cd client && npm start",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "install-all": "npm install && cd server && npm install && cd ../client && npm install",
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "cd client && npm install && npm run build"
+  },
+  "keywords": [
+    "rainfall",
+    "prediction",
+    "weather",
+    "mern",
+    "react",
+    "mongodb"
+  ],
+  "author": "RainSense Team",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
