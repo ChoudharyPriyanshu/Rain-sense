@@ -7,6 +7,7 @@ import Tilt from 'react-parallax-tilt';
 
 const LandingPage = () => {
   const containerRef = useRef(null);
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"]
@@ -19,17 +20,26 @@ const LandingPage = () => {
     {
       icon: <FiZap className="text-4xl" />,
       title: "AI-Powered Predictions",
-      description: "Advanced algorithms analyze multiple weather parameters for accurate rainfall forecasting"
+      description:
+        "Advanced algorithms analyze multiple weather parameters for accurate rainfall forecasting"
     },
     {
       icon: <FiTrendingUp className="text-4xl" />,
       title: "Real-Time Analytics",
-      description: "Live weather data integration with interactive visualizations and trend analysis"
+      description:
+        "Live weather data integration with interactive visualizations and trend analysis"
     },
     {
       icon: <FiGlobe className="text-4xl" />,
       title: "Global Coverage",
-      description: "Access weather predictions for any location worldwide with precision accuracy"
+      description:
+        "Access weather predictions for any location worldwide with precision accuracy"
+    },
+    {
+      icon: <WiRain className="text-4xl" />,
+      title: "High Accuracy Models",
+      description:
+        "Machine learning models trained on historical weather data improve rainfall prediction accuracy"
     }
   ];
 
@@ -43,13 +53,16 @@ const LandingPage = () => {
 
   return (
     <div ref={containerRef} className="relative">
+
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center px-4 pt-20 overflow-hidden">
+
         <motion.div
           style={{ y, opacity }}
           className="max-w-7xl mx-auto text-center z-10"
         >
-          {/* Animated Rain Icon */}
+
+          {/* Rain Icon */}
           <motion.div
             initial={{ scale: 0, rotate: -180 }}
             animate={{ scale: 1, rotate: 0 }}
@@ -59,7 +72,7 @@ const LandingPage = () => {
             <WiRain className="text-9xl text-primary mx-auto animate-pulse" />
           </motion.div>
 
-          {/* Hero Text */}
+          {/* Title */}
           <motion.h1
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -71,6 +84,7 @@ const LandingPage = () => {
             <span className="text-white">Predict Brighter.</span>
           </motion.h1>
 
+          {/* Subtitle */}
           <motion.p
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -98,6 +112,7 @@ const LandingPage = () => {
                 <FiArrowRight />
               </motion.button>
             </Link>
+
             <Link to="/analytics">
               <motion.button
                 whileHover={{ scale: 1.05 }}
@@ -131,6 +146,7 @@ const LandingPage = () => {
               </motion.div>
             ))}
           </motion.div>
+
         </motion.div>
 
         {/* Scroll Indicator */}
@@ -152,11 +168,13 @@ const LandingPage = () => {
             />
           </motion.div>
         </motion.div>
+
       </section>
 
       {/* Features Section */}
       <section className="relative py-32 px-4">
         <div className="max-w-7xl mx-auto">
+
           <motion.div
             initial={{ y: 50, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
@@ -172,7 +190,8 @@ const LandingPage = () => {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+
             {features.map((feature, index) => (
               <Tilt key={feature.title} tiltMaxAngleX={10} tiltMaxAngleY={10}>
                 <motion.div
@@ -182,20 +201,30 @@ const LandingPage = () => {
                   transition={{ delay: index * 0.2 }}
                   className="glass-card p-8 h-full hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300"
                 >
-                  <div className="text-primary mb-6">{feature.icon}</div>
+                  <div className="text-primary mb-6">
+                    {feature.icon}
+                  </div>
+
                   <h3 className="text-2xl font-heading font-bold mb-4">
                     {feature.title}
                   </h3>
-                  <p className="text-gray-400">{feature.description}</p>
+
+                  <p className="text-gray-400">
+                    {feature.description}
+                  </p>
+
                 </motion.div>
               </Tilt>
             ))}
+
           </div>
+
         </div>
       </section>
 
       {/* CTA Section */}
       <section className="relative py-32 px-4">
+
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
           whileInView={{ scale: 1, opacity: 1 }}
@@ -203,12 +232,15 @@ const LandingPage = () => {
           transition={{ duration: 0.6 }}
           className="max-w-4xl mx-auto glass-card p-12 text-center"
         >
+
           <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
             Ready to Predict the Weather?
           </h2>
+
           <p className="text-xl text-gray-400 mb-8">
             Join thousands of users who trust RainSense for accurate rainfall predictions
           </p>
+
           <Link to="/dashboard">
             <motion.button
               whileHover={{ scale: 1.05 }}
@@ -218,16 +250,19 @@ const LandingPage = () => {
               Get Started Now
             </motion.button>
           </Link>
+
         </motion.div>
+
       </section>
 
       {/* Footer */}
       <footer className="relative py-8 px-4 border-t border-white/10">
         <div className="max-w-7xl mx-auto text-center text-gray-400">
-          <p>&copy; 2024 RainSense. All rights reserved.</p>
+          <p>&copy; 2026 RainSense. All rights reserved.</p>
           <p className="mt-2 text-sm">Built with 💙 using MERN Stack</p>
         </div>
       </footer>
+
     </div>
   );
 };
