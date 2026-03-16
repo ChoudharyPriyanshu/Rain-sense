@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FiMail, FiLock, FiArrowRight } from 'react-icons/fi';
+import { FiMail, FiLock, FiArrowRight, FiEye, FiEyeOff } from 'react-icons/fi';
 import { WiRain } from 'react-icons/wi';
 import { useAuth } from '../context/AuthContext';
 import Tilt from 'react-parallax-tilt';
@@ -11,7 +11,10 @@ const Login = () => {
     email: '',
     password: ''
   });
+
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+
   const { login } = useAuth();
   const navigate = useNavigate();
 
@@ -45,6 +48,7 @@ const Login = () => {
       >
         <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10}>
           <div className="glass-card p-8">
+
             {/* Logo */}
             <div className="text-center mb-8">
               <motion.div
@@ -55,9 +59,11 @@ const Login = () => {
               >
                 <WiRain className="text-7xl text-primary mx-auto animate-pulse" />
               </motion.div>
+
               <h1 className="text-3xl font-heading font-bold mt-4">
                 Welcome Back
               </h1>
+
               <p className="text-gray-400 mt-2">
                 Sign in to access your weather predictions
               </p>
@@ -65,6 +71,8 @@ const Login = () => {
 
             {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-6">
+
+              {/* Email */}
               <motion.div
                 initial={{ x: -20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
@@ -73,8 +81,10 @@ const Login = () => {
                 <label className="block text-sm font-medium text-gray-300 mb-2">
                   Email Address
                 </label>
+
                 <div className="relative">
                   <FiMail className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
+
                   <input
                     type="email"
                     name="email"
@@ -87,6 +97,7 @@ const Login = () => {
                 </div>
               </motion.div>
 
+              {/* Password */}
               <motion.div
                 initial={{ x: -20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
@@ -95,20 +106,33 @@ const Login = () => {
                 <label className="block text-sm font-medium text-gray-300 mb-2">
                   Password
                 </label>
+
                 <div className="relative">
+
                   <FiLock className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
+
                   <input
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     name="password"
                     value={formData.password}
                     onChange={handleChange}
                     required
-                    className="input-field pl-12"
+                    className="input-field pl-12 pr-12"
                     placeholder="Enter your password"
                   />
+
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white"
+                  >
+                    {showPassword ? <FiEyeOff /> : <FiEye />}
+                  </button>
+
                 </div>
               </motion.div>
 
+              {/* Submit */}
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -131,6 +155,7 @@ const Login = () => {
                   </span>
                 )}
               </motion.button>
+
             </form>
 
             {/* Links */}
@@ -141,15 +166,23 @@ const Login = () => {
               className="mt-6 text-center"
             >
               <p className="text-gray-400">
-                Don't have an account?{' '}
-                <Link to="/register" className="text-primary hover:text-accent transition-colors">
+                Don't have an account?{" "}
+                <Link
+                  to="/register"
+                  className="text-primary hover:text-accent transition-colors"
+                >
                   Register here
                 </Link>
               </p>
-              <Link to="/" className="block mt-4 text-sm text-gray-500 hover:text-gray-300 transition-colors">
+
+              <Link
+                to="/"
+                className="block mt-4 text-sm text-gray-500 hover:text-gray-300 transition-colors"
+              >
                 Back to Home
               </Link>
             </motion.div>
+
           </div>
         </Tilt>
       </motion.div>
